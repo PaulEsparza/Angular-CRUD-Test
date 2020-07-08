@@ -1,0 +1,54 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header">
+          <h3>Add User</h3>
+        </div>
+        <div class="card-body">
+          <form action="#" method="post">
+          <div class="form-group">
+              <input class="form-control" type="text" name="username" placeholder="Username" [(ngModel)]="users.username">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="email" placeholder="e-mail" [(ngModel)]="users.email">
+        </div>
+        <div class="form-group">
+          <select class="form-control" name="rol" [(ngModel)]="users.rol">
+            <option value="Administrator">Administrator</option>
+            <option value="User">User</option>
+          </select>
+      </div>
+      <div class="form-group">
+        <button *ngIf="editing && !reading" (click)="register()" class="btn btn-block btn-success">Register</button>
+        <button *ngIf="!editing" (click)="update(users)" class="btn btn-block btn-dark">Update</button>
+        <button *ngIf="!editing || reading" (click)="cancel()" class="btn btn-block btn-danger">Cancel</button>
+    </div>
+  </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+        <div class="col-md-4">
+          <div *ngFor="let u of user">
+              <div class="card text-center mt-3">
+                  <div class="card-header">
+                       <b>User Information</b>
+                  </div>
+                  <div class="card-body">
+                      <p class="card-title"><b> Username: </b> {{ u.username }}</p>
+                      <p class="card-text"><b> e-mail: </b> {{ u.email }}</p>
+                      <p class="card-text"><b> Rol: </b>{{ u.rol }}</p>
+                  </div>
+                  <div class="card-footer text-muted">
+                      <button (click)="read(u)" class="btn btn-block btn-primary">Read</button>
+                      <button (click)="edit(u)" class="btn btn-block btn-warning">Edit</button>
+                      <button (click)="delete(u)" class="btn btn-block btn-danger">Delete</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
